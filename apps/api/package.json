@@ -7,7 +7,7 @@
     "dev": "APP_ENV=development NODE_ENV=development nodemon --watch src -e ts,tsx --exec tsx src/main.ts",
     "build": "tsc",
     "start": "node dist/main.js",
-    "lint": ""
+    "lint": "eslint --ext .ts,.tsx src --fix"
   },
   "dependencies": {
     "@koa/cors": "4.0.0",

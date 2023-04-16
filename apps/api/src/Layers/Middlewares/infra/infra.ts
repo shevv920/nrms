@@ -1,9 +1,9 @@
-import requestLogger from "koa-logger";
-import Koa, { Next, Context } from "koa";
-import cors from "@koa/cors";
-import helmet from "koa-helmet";
-import bodyParser from "koa-bodyparser";
-import { injectable } from "inversify";
+import requestLogger from 'koa-logger';
+import Koa, { Next, Context } from 'koa';
+import cors from '@koa/cors';
+import helmet from 'koa-helmet';
+import bodyParser from 'koa-bodyparser';
+import { injectable } from 'inversify';
 
 const errorHandler: Koa.Middleware = async (ctx: Context, next: Next) => {
   try {
@@ -16,7 +16,7 @@ const errorHandler: Koa.Middleware = async (ctx: Context, next: Next) => {
 
 const attachAuthData: Koa.Middleware = async (ctx: Context, next: Next) => {
   const { authorization } = ctx.headers;
-  const accessToken = authorization?.replace("Bearer", "").trim();
+  const accessToken = authorization?.replace('Bearer', '').trim();
 
   if (accessToken) {
     ctx.state.accessToken = accessToken;

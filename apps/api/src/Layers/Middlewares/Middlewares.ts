@@ -1,7 +1,7 @@
-import Koa from "koa";
-import { inject, injectable } from "inversify";
+import Koa from 'koa';
+import { inject, injectable } from 'inversify';
 
-import { InfraMiddlewares } from "./infra";
+import { InfraMiddlewares } from './infra';
 
 export interface IMiddlewares {
   attach: (app: Koa) => void;
@@ -10,7 +10,7 @@ export interface IMiddlewares {
 @injectable()
 export class Middlewares implements IMiddlewares {
   constructor(
-    @inject("InfraMiddlewares") private readonly middlewares: InfraMiddlewares
+    @inject('InfraMiddlewares') private readonly middlewares: InfraMiddlewares
   ) {}
 
   public attach(app: Koa) {

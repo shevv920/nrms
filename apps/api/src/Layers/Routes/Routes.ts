@@ -1,7 +1,7 @@
-import Koa from "koa";
-import { injectable } from "inversify";
+import Koa from 'koa';
+import { injectable } from 'inversify';
 
-import { publicRoutes } from "./public";
+import { publicRoutes } from './public';
 
 export interface IRoutes {
   attach: (app: Koa) => void;

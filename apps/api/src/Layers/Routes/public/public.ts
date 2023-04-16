@@ -1,10 +1,10 @@
-import KoaAppRouter from "@koa/router";
-import { IRoutes } from "Layers/Routes";
-import Koa from "koa";
+import KoaAppRouter from '@koa/router';
+import { IRoutes } from 'Layers/Routes';
+import Koa from 'koa';
 
 const healthCheckRouter = new KoaAppRouter();
 
-healthCheckRouter.get("/health", (ctx) => {
+healthCheckRouter.get('/health', (ctx) => {
   ctx.status = 200;
 });
 

@@ -1,2 +1,2 @@
-export * from "./public";
-export { default as publicRoutes } from "./public";
+export * from './public';
+export { default as publicRoutes } from './public';

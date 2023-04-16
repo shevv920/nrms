@@ -5,10 +5,10 @@ import {
   createDevelopmentConfig,
   createProductionConfig,
   createStagingConfig,
-} from "./env";
+} from './env';
 
 const configSchema = z.object({
-  env: z.enum(["development", "staging", "demo", "production"]),
+  env: z.enum(['development', 'staging', 'demo', 'production']),
   isDev: z.boolean(),
   app: z.object({
     mongoConnectionString: z.string().min(1),
@@ -26,13 +26,13 @@ export const createConfig: () => IConfig = () => {
   const env = process.env.NODE_ENV;
 
   switch (env) {
-    case "development":
+    case 'development':
       return createDevelopmentConfig();
-    case "staging":
+    case 'staging':
       return createStagingConfig();
-    case "demo":
+    case 'demo':
       return createDemoConfig();
-    case "production":
+    case 'production':
       return createProductionConfig();
     default:
       throw new Error(`Unknown environment: ${env}`);
