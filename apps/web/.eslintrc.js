@@ -1,4 +1,12 @@
 module.exports = {
   root: true,
-  extends: ["custom"],
+  extends: ["plugin:react/recommended", "next", "next/core-web-vitals", "custom"],
+  rules: {
+    "@next/next/no-html-link-for-pages": "off",
+  },
+  parserOptions: {
+    babelOptions: {
+      presets: [require.resolve("next/babel")],
+    },
+  },
 };
