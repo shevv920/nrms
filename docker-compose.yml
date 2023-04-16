@@ -1,0 +1,17 @@
+version: '3.6'
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo:6
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=developmentUsername
+      - MONGO_INITDB_ROOT_PASSWORD=developmentPassword
+    ports:
+      - "27017:27017"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - type: volume
+        source: mongodb
+        target: /data/db
+volumes:
+  mongodb:

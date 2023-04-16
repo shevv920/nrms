@@ -1,5 +1,2 @@
-import * as React from "react";
+export { Button } from '@mantine/core';
 
-export const Button = () => {
-  return <button>Boop</button>;
-};

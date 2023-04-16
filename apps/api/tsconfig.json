@@ -1,0 +1,21 @@
+{
+  "extends": "tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "rootDir": ".",
+    "outDir": "dist",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "paths": { "*": ["*"] },
+    "target": "es2022",
+    "module": "ES2022",
+    "lib": ["ES2022"],
+    "strict": true,
+    "types": ["node", "reflect-metadata"]
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["dist", "build", "node_modules"]
+}

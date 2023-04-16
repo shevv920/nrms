@@ -13,7 +13,10 @@ coverage
 out/
 build
 
+dist/
+
 # misc
+.idea/
 .DS_Store
 *.pem
 
