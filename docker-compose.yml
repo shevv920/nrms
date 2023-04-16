@@ -13,5 +13,9 @@ services:
       - type: volume
         source: mongodb
         target: /data/db
+    networks:
+      - app-network
 volumes:
   mongodb:
+networks:
+  app-network:

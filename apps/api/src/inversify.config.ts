@@ -19,7 +19,7 @@ container
   .bind<InfraMiddlewares>('InfraMiddlewares')
   .to(InfraMiddlewares)
   .inSingletonScope();
-container.bind<IMiddlewares>('IMiddlewares').to(Middlewares).inSingletonScope();
+container.bind<IMiddlewares>('Middlewares').to(Middlewares).inSingletonScope();
 container.bind<HttpApp>(HttpApp).toSelf().inSingletonScope();
 container.bind(Routes).toSelf().inSingletonScope();
 container.bind<IDatabase>('Database').to(Database).inSingletonScope();

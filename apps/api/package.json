@@ -2,7 +2,7 @@
   "name": "api",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "APP_ENV=development NODE_ENV=development nodemon --watch src -e ts,tsx --exec tsx src/main.ts",
     "build": "tsc",
@@ -18,8 +18,10 @@
     "koa-helmet": "7.0.2",
     "koa-logger": "3.2.1",
     "koa-mount": "4.0.0",
+    "module-alias": "2.2.2",
     "mongoose": "7.0.3",
     "reflect-metadata": "0.1.13",
+    "tsx": "^3.12.6",
     "winston": "3.8.2",
     "zod": "3.21.4"
   },
@@ -29,13 +31,13 @@
     "@types/koa-logger": "^3.1.2",
     "@types/koa__cors": "4.0.0",
     "@types/koa__router": "^12.0.0",
+    "@types/module-alias": "^2.0.1",
     "@types/node": "18.15.11",
+    "eslint-config-custom": "workspace:eslint-config-custom",
     "nodemon": "2.0.22",
-    "tsconfig": "workspace:tsconfig",
-    "tsx": "^3.12.6",
-    "typescript": "5.0.4",
     "prettier": "2.8.7",
-    "eslint-config-custom": "workspace:eslint-config-custom"
+    "tsconfig": "workspace:tsconfig",
+    "typescript": "5.0.4"
   },
   "peerDependencies": {
     "mongodb": "^5.1.0"

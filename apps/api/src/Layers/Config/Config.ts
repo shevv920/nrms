@@ -23,7 +23,7 @@ export const defineConfig = (config: IConfig): IConfig => {
 };
 
 export const createConfig: () => IConfig = () => {
-  const env = process.env.NODE_ENV;
+  const env = process.env.APP_ENV;
 
   switch (env) {
     case 'development':

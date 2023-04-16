@@ -1,6 +1,7 @@
 import KoaAppRouter from '@koa/router';
-import { IRoutes } from 'Layers/Routes';
 import Koa from 'koa';
+
+import { IRoutes } from '~/Layers/Routes';
 
 const healthCheckRouter = new KoaAppRouter();
 

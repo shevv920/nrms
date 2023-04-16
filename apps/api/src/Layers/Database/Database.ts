@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
 import { inject, injectable } from 'inversify';
-import type { IConfig } from 'Layers/Config';
-import type { ILogger } from 'Layers/Logger';
-import { Logger } from 'Layers/Logger';
+
+import type { IConfig } from '~/Layers/Config';
+import type { ILogger } from '~/Layers/Logger';
+import { Logger } from '~/Layers/Logger';
 
 export interface IDatabase {
   connect: () => void;

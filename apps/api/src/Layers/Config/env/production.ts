@@ -5,7 +5,7 @@ export const createProductionConfig = (): IConfig => {
     isDev: false,
     env: 'production',
     app: {
-      mongoConnectionString: process.env.MONGO_CONNECTION_STRING!,
+      mongoConnectionString: process.env.MONGO_CONNECTION_STRING || '',
       port: 2000,
     },
   });
