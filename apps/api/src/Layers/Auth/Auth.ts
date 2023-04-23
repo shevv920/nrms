@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import type { IConfig } from 'Layers/Config';
-import { inject } from 'inversify';
+import type { IConfig } from '~/Layers/Config';
+import { inject, injectable } from 'inversify';
 import * as E from 'fp-ts/Either';
 import type { Either } from 'fp-ts/Either';
 
@@ -16,6 +16,7 @@ interface Payload {
   exp: number;
 }
 
+@injectable()
 export class Auth implements IAuth<Payload> {
   private readonly secretKey: string;
 
