@@ -5,6 +5,7 @@ export const createStagingConfig = (): IConfig => {
     isDev: false,
     env: 'staging',
     app: {
+      secretKey: process.env.SECRET_KEY || '',
       mongoConnectionString: process.env.MONGO_CONNECTION_STRING || '',
       port: 2000,
     },

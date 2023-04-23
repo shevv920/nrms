@@ -11,6 +11,7 @@ const configSchema = z.object({
   env: z.enum(['development', 'staging', 'demo', 'production']),
   isDev: z.boolean(),
   app: z.object({
+    secretKey: z.string().min(16),
     mongoConnectionString: z.string().min(1),
     port: z.number(),
   }),

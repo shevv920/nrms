@@ -14,7 +14,7 @@ const errorHandler: Koa.Middleware = async (ctx: Context, next: Next) => {
   }
 };
 
-const attachAuthData: Koa.Middleware = async (ctx: Context, next: Next) => {
+const attachToken: Koa.Middleware = async (ctx: Context, next: Next) => {
   const { authorization } = ctx.headers;
   const accessToken = authorization?.replace('Bearer', '').trim();
 
@@ -25,13 +25,13 @@ const attachAuthData: Koa.Middleware = async (ctx: Context, next: Next) => {
   await next();
 };
 
-const defaultMiddlewares = [
+const defaultMiddlewares: Array<Koa.Middleware> = [
   cors({ credentials: true }),
   helmet(),
   bodyParser(),
   errorHandler,
   requestLogger(),
-  attachAuthData,
+  attachToken,
 ];
 
 @injectable()

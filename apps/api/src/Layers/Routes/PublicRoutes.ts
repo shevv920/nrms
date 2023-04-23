@@ -8,9 +8,8 @@ export interface IRoutes {
 }
 
 @injectable()
-export class Routes implements IRoutes {
+export class PublicRoutes implements IRoutes {
   public attach(app: Koa) {
     publicRoutes.attach(app);
-
   }
 }
