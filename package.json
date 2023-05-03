@@ -7,11 +7,10 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "eslint": "8.38.0",
-    "eslint-config-custom": "workspace:eslint-config-custom",
-    "prettier": "2.8.7",
-    "turbo": "^1.9.1"
+    "eslint": "8.39.0",
+    "prettier": "2.8.8",
+    "turbo": "^1.9.3"
   },
-  "packageManager": "pnpm@8.2.0",
-  "name": "nodejs-react-mongo-starter"
+  "packageManager": "pnpm@8.3.1",
+  "name": "nodejs-svelte-mongo-starter"
 }
