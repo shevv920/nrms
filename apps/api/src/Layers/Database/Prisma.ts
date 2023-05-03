@@ -21,4 +21,3 @@ export class PrismaDatabase implements IDatabase {
     this.logger.info('Database connected');
   }
 }
-

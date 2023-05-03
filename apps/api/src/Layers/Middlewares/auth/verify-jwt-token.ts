@@ -6,7 +6,6 @@ import { Auth } from '~/Layers/Auth';
 import { container } from '~/inversify.config';
 import { PrismaDatabase } from '~/Layers/Database';
 
-
 const verifyJwtToken: Koa.Middleware = async (ctx: Context, next: Next) => {
   const { accessToken } = ctx.state;
   if (!accessToken) {
