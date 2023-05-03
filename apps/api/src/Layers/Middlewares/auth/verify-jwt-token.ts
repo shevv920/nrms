@@ -4,7 +4,7 @@ import { injectable } from 'inversify';
 
 import { Auth } from '~/Layers/Auth';
 import { container } from '~/inversify.config';
-import { AccountModel } from '~/Models/Account/Account.mongoose';
+import { PrismaDatabase } from '~/Layers/Database';
 
 
 const verifyJwtToken: Koa.Middleware = async (ctx: Context, next: Next) => {
@@ -23,9 +23,10 @@ const verifyJwtToken: Koa.Middleware = async (ctx: Context, next: Next) => {
 
 const attachAccount: Koa.Middleware = async (ctx: Context, next: Next) => {
   const { accountId } = ctx.state.jwtPayload;
-  ctx.state.account = await AccountModel.findById(accountId);
+  const db = container.get(PrismaDatabase);
+  ctx.state.account = await db.prisma.accounts.findFirst({ where: { id: accountId } });
   await next();
-}
+};
 
 const defaultMiddlewares: Array<Koa.Middleware> = [
   verifyJwtToken,
@@ -34,9 +35,12 @@ const defaultMiddlewares: Array<Koa.Middleware> = [
 
 @injectable()
 export class AuthMiddlewares {
-  constructor(private readonly middlewares: Koa.Middleware[] = defaultMiddlewares) {
+  constructor(
+    private readonly middlewares: Koa.Middleware[] = defaultMiddlewares
+  ) {
     this.middlewares = middlewares;
   }
+
   attach(app: Koa) {
     this.middlewares.forEach((middleware) => {
       app.use(middleware);
