@@ -8,7 +8,7 @@ import { PublicRoutes } from '~/Layers/Routes';
 import { Middlewares } from '~/Layers/Middlewares';
 import type { IMiddlewares } from '~/Layers/Middlewares';
 import { InfraMiddlewares } from '~/Layers/Middlewares/infra/infra';
-import { Database } from '~/Layers/Database';
+import { PrismaDatabase } from '~/Layers/Database';
 import type { IDatabase } from '~/Layers/Database';
 import { Auth } from '~/Layers/Auth';
 import { AuthMiddlewares } from '~/Layers/Middlewares/auth';
@@ -25,7 +25,7 @@ container
 container.bind<IMiddlewares>('Middlewares').to(Middlewares).inSingletonScope();
 container.bind<HttpApp>(HttpApp).toSelf().inSingletonScope();
 container.bind(PublicRoutes).toSelf().inSingletonScope();
-container.bind<IDatabase>('Database').to(Database).inSingletonScope();
 container.bind<Auth>(Auth).toSelf().inSingletonScope();
 container.bind<AuthMiddlewares>(AuthMiddlewares).toSelf().inSingletonScope();
 container.bind(PrivateRoutes).toSelf().inSingletonScope();
+container.bind<IDatabase>(PrismaDatabase).toSelf().inSingletonScope();

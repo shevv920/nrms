@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.6",
+    "@emotion/react": "^11.10.8",
     "@emotion/server": "^11.10.0",
     "@mantine/core": "^6.0.5",
     "@mantine/hooks": "^6.0.5",
@@ -17,16 +17,16 @@
     "@mantine/next": "^6.0.5",
     "@mantine/notifications": "^6.0.5",
     "@mantine/ssr": "^6.0.5",
-    "next": "13.3.0",
+    "next": "13.3.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-query": "3.39.3",
     "ui": "workspace:*"
   },
   "devDependencies": {
-    "@types/node": "18.15.11",
-    "@types/react": "18.0.35",
-    "@types/react-dom": "18.0.11",
+    "@types/node": "18.16.3",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.1",
     "tsconfig": "workspace:tsconfig",
     "typescript": "5.0.4",
     "eslint-config-custom": "workspace:eslint-config-custom",
