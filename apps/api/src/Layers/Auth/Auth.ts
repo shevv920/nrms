@@ -1,20 +1,9 @@
 import jwt from 'jsonwebtoken';
-import type { IConfig } from '~/Layers/Config';
 import { inject, injectable } from 'inversify';
 import * as E from 'fp-ts/Either';
 import type { Either } from 'fp-ts/Either';
 
-
-export interface IAuth<T extends object> {
-  generateToken: (payload: T) => string;
-  generateRefreshToken: (payload: T) => string;
-  verifyToken: (token: string) => Either<string, T>;
-}
-
-interface Payload {
-  accountId: string;
-  exp: number;
-}
+import type { IAuth, IConfig, Payload } from "~/Interfaces";
 
 @injectable()
 export class Auth implements IAuth<Payload> {

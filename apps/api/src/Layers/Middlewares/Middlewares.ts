@@ -1,26 +1,17 @@
 import Koa from 'koa';
 import { inject, injectable } from 'inversify';
 
-import { InfraMiddlewares } from './infra';
-import { AuthMiddlewares} from './auth';
+import { IAppMiddlewares } from "~/Interfaces";
 
-export interface IMiddlewares {
-  attachInfra: (app: Koa) => void;
-  attachAuth: (app: Koa) => void;
-}
+import { InfraMiddlewares } from './infra';
 
 @injectable()
-export class Middlewares implements IMiddlewares {
+export class Middlewares implements IAppMiddlewares {
   constructor(
-    @inject('InfraMiddlewares') private readonly infra: InfraMiddlewares,
-    @inject(AuthMiddlewares) private readonly auth: AuthMiddlewares
+    @inject(InfraMiddlewares) private readonly infra: InfraMiddlewares,
   ) {}
 
-  public attachInfra(app: Koa) {
+  public attach(app: Koa) {
     this.infra.attach(app);
-  }
-
-  public attachAuth(app: Koa) {
-    this.auth.attach(app);
   }
 }

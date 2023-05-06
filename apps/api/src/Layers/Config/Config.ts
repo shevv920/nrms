@@ -1,4 +1,4 @@
-import z from 'zod';
+import { configSchema, IConfig } from "~/Interfaces";
 
 import {
   createDemoConfig,
@@ -6,18 +6,6 @@ import {
   createProductionConfig,
   createStagingConfig,
 } from './env';
-
-const configSchema = z.object({
-  env: z.enum(['development', 'staging', 'demo', 'production']),
-  isDev: z.boolean(),
-  app: z.object({
-    secretKey: z.string().min(16),
-    mongoConnectionString: z.string().min(1),
-    port: z.number(),
-  }),
-});
-
-export type IConfig = z.infer<typeof configSchema>;
 
 export const defineConfig = (config: IConfig): IConfig => {
   return configSchema.parse(config);

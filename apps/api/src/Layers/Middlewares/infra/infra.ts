@@ -14,24 +14,12 @@ const errorHandler: Koa.Middleware = async (ctx: Context, next: Next) => {
   }
 };
 
-const attachToken: Koa.Middleware = async (ctx: Context, next: Next) => {
-  const { authorization } = ctx.headers;
-  const accessToken = authorization?.replace('Bearer', '').trim();
-
-  if (accessToken) {
-    ctx.state.accessToken = accessToken;
-  }
-
-  await next();
-};
-
 const defaultMiddlewares: Array<Koa.Middleware> = [
   cors({ credentials: true }),
   helmet(),
   bodyParser(),
   errorHandler,
   requestLogger(),
-  attachToken,
 ];
 
 @injectable()
@@ -41,6 +29,7 @@ export class InfraMiddlewares {
   ) {
     this.middlewares = middlewares;
   }
+
   attach(app: Koa) {
     this.middlewares.forEach((middleware) => {
       app.use(middleware);

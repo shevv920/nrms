@@ -1,6 +1,7 @@
 <nav>
   <a href="/">Home</a>
   <a href="/auth/sign-in">Sign in</a>
+  <a href="/auth/sign-up">Sign up</a>
 </nav>
 
 <slot></slot>

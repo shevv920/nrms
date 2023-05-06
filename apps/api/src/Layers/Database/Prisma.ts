@@ -1,10 +1,8 @@
 import { inject, injectable } from 'inversify';
 import { PrismaClient } from '@prisma/client'
 
-import type { IConfig } from '~/Layers/Config';
-import type { ILogger } from '~/Layers/Logger';
 import { Logger } from '~/Layers/Logger';
-import { IDatabase } from '~/Layers/Database/Database';
+import type { IDatabase, IConfig, ILogger } from '~/Interfaces';
 
 @injectable()
 export class PrismaDatabase implements IDatabase {
@@ -13,7 +11,7 @@ export class PrismaDatabase implements IDatabase {
     @inject('Config') private readonly config: IConfig,
     @inject(Logger) private readonly logger: ILogger
   ) {
-    this.prisma = new PrismaClient();
+    this.prisma = new PrismaClient({ errorFormat: 'minimal' });
   }
 
   public async connect() {
@@ -21,4 +19,3 @@ export class PrismaDatabase implements IDatabase {
     this.logger.info('Database connected');
   }
 }
-

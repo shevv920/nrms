@@ -1,4 +1,5 @@
-import { defineConfig, IConfig } from '../Config';
+import { defineConfig } from '../Config';
+import { IConfig } from "~/Interfaces";
 
 export const createDevelopmentConfig = (): IConfig => {
   return defineConfig({

@@ -1,9 +1,14 @@
 <script lang="ts">
+  import axios from 'axios';
   let loginValue = '';
   let passwordValue = '';
 
-  const handleSubmit = () => {
-    console.log(loginValue, passwordValue);
+  const handleSubmit = async () => {
+    const res = await axios.post('http://localhost:2000/sign-in', {
+      login: loginValue,
+      password: passwordValue,
+    });
+    console.log(res);
   };
 
 </script>

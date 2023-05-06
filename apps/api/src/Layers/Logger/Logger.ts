@@ -1,23 +1,12 @@
-import { inject, injectable } from 'inversify';
-import 'reflect-metadata';
-import winston from 'winston';
-
-import type { IConfig } from '~/Layers/Config';
-
-export interface ILogger {
-  info(message: string, meta?: never): void;
-
-  debug(message: string, meta?: never): void;
-
-  warn(message: string, meta?: never): void;
-
-  error(message: string, meta?: never): void;
-}
+import { inject, injectable } from "inversify";
+import "reflect-metadata";
+import winston from "winston";
+import type { IConfig, ILogger } from "~/Interfaces";
 
 const formatToPrettyJson = winston.format.printf((info) => {
   if (
-    typeof info.message.constructor === 'object' ||
-    typeof info.message.constructor === 'function'
+    typeof info.message.constructor === "object" ||
+    typeof info.message.constructor === "function"
   ) {
     info.message = JSON.stringify(info.message, null, 2);
   }
@@ -45,8 +34,8 @@ const getFormat = (isDev: boolean) => {
 const winstonLoggerFactory = (config: IConfig) => {
   const transports = [
     new winston.transports.Console({
-      level: config.isDev ? 'debug' : 'info',
-      stderrLevels: ['emerg', 'alert', 'crit', 'error']
+      level: config.isDev ? "debug" : "info",
+      stderrLevels: ["emerg", "alert", "crit", "error"]
     })
   ];
 
@@ -61,7 +50,7 @@ const winstonLoggerFactory = (config: IConfig) => {
 export class Logger implements ILogger {
   private logger: winston.Logger;
 
-  constructor(@inject('Config') config: IConfig) {
+  constructor(@inject("Config") config: IConfig) {
     this.logger = winstonLoggerFactory(config);
   }
 

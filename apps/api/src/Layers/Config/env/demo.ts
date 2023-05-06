@@ -1,4 +1,5 @@
-import { defineConfig, IConfig } from '~/Layers/Config';
+import { defineConfig } from '~/Layers/Config';
+import { IConfig } from "~/Interfaces";
 
 export const createDemoConfig = (): IConfig => {
   return defineConfig({
