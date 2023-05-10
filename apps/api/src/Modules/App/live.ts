@@ -1,18 +1,19 @@
 import Koa from 'koa';
-import { Config, createConfig } from '~/Modules/Config';
+import { Config } from '~/Modules/Config';
 import { Logger } from '~/Modules/Logger';
 import { PublicRoutes } from '~/Modules/Routes/public/live';
 import { PrivateRoutes } from '~/Modules/Routes/private/live';
 import { HttpApp } from '~/Modules/App/App';
 import { Middlewares } from '~/Modules/Middlewares/live';
 import { ConsoleLogger } from '~/Modules/Logger/live';
+import configLive from '~/Modules/Config/live';
 
 export class KoaHttpApp implements HttpApp {
   private readonly koa: Koa;
 
   constructor(
-    private readonly config: Config = createConfig(),
-    private readonly logger: Logger = new ConsoleLogger(config),
+    private readonly config: Config = configLive,
+    private readonly logger: Logger = new ConsoleLogger(configLive),
     private readonly publicRoutes: PublicRoutes = new PublicRoutes(),
     private readonly privateRoutes: PrivateRoutes = new PrivateRoutes(),
     private readonly middlewares: Middlewares = new Middlewares()
