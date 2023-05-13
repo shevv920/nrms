@@ -1,10 +1,5 @@
 import Koa from 'koa';
-import type { Config } from '~/Modules/Config';
-import type { Logger } from '~/Modules/Logger';
-import type { HttpApp } from '~/Modules/App/App';
-import type { Middlewares } from '~/Modules/Middlewares/live';
-import type { PrivateRoutes } from '~/Modules/Routes/private/live';
-import type { PublicRoutes } from '~/Modules/Routes/public/live';
+import { Config, HttpApp, Logger, PublicRoutes, PrivateRoutes, Middlewares } from '~/types';
 import liveModules from '~/Modules/live.modules';
 
 export class KoaHttpApp implements HttpApp {

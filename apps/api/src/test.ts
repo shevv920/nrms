@@ -3,7 +3,7 @@ import { Auth } from '~/Modules/Auth/live';
 import { Config } from '~/Modules/Config';
 import * as E from 'fp-ts/Either';
 
-test('Test Auth', async (ec) => {
+test('Test Auth token generate', async (ec) => {
   const auth = new Auth({ app: { secretKey: 'secretKey' } } as Config);
   const payload = { accountId: 'id' };
 

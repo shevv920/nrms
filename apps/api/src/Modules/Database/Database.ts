@@ -1,3 +1,3 @@
-export interface IDatabase {
+export interface Database {
   connect: () => Promise<void>;
 }
