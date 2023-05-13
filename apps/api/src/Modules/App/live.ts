@@ -14,9 +14,6 @@ export class KoaHttpApp implements HttpApp {
   ) {
     this.koa = new Koa();
     this.middlewares.attachInfra(this.koa);
-    this.publicRoutes.attach(this.koa);
-    this.middlewares.attachAuth(this.koa);
-    this.privateRoutes.attach(this.koa);
   }
 
   public async start() {
