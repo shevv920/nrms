@@ -7,7 +7,8 @@
     "dev": "APP_ENV=development NODE_ENV=development nodemon --watch src -e ts,tsx --exec tsx src/main.ts",
     "build": "tsc",
     "start": "node dist/main.js",
-    "lint": "eslint --ext .ts,.tsx src --fix"
+    "lint": "eslint --ext .ts src --fix",
+    "test:unit": "ava --verbose --serial --timeout=10m --fail-fast --concurrency=1 --watch"
   },
   "dependencies": {
     "@koa/cors": "4.0.0",
@@ -21,7 +22,6 @@
     "koa-logger": "3.2.1",
     "koa-mount": "4.0.0",
     "module-alias": "2.2.2",
-    "mongoose": "7.1.0",
     "reflect-metadata": "0.1.13",
     "tsx": "^3.12.7",
     "winston": "3.8.2",
@@ -36,14 +36,23 @@
     "@types/koa__router": "^12.0.0",
     "@types/module-alias": "^2.0.1",
     "@types/node": "18.16.3",
+    "ava": "^5.2.0",
     "eslint-config-custom": "workspace:eslint-config-custom",
     "nodemon": "2.0.22",
     "prettier": "2.8.8",
-    "prisma": "^4.13.0",
+    "prisma": "4.14.0",
     "tsconfig": "workspace:tsconfig",
     "typescript": "5.0.4"
   },
   "peerDependencies": {
     "mongodb": "^5.1.0"
+  },
+  "ava": {
+    "extensions": [
+      "ts"
+    ],
+    "nodeArguments": [
+      "--loader=tsx"
+    ]
   }
 }

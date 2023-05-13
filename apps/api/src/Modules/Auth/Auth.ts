@@ -9,7 +9,6 @@ export interface AuthHelper<T extends object> {
 
 export interface Payload {
   accountId: string;
-  exp: number;
 }
 
 

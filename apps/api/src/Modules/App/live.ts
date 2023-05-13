@@ -1,22 +1,21 @@
 import Koa from 'koa';
-import { Config } from '~/Modules/Config';
-import { Logger } from '~/Modules/Logger';
-import { PublicRoutes } from '~/Modules/Routes/public/live';
-import { PrivateRoutes } from '~/Modules/Routes/private/live';
-import { HttpApp } from '~/Modules/App/App';
-import { Middlewares } from '~/Modules/Middlewares/live';
-import { ConsoleLogger } from '~/Modules/Logger/live';
-import configLive from '~/Modules/Config/live';
+import type { Config } from '~/Modules/Config';
+import type { Logger } from '~/Modules/Logger';
+import type { HttpApp } from '~/Modules/App/App';
+import type { Middlewares } from '~/Modules/Middlewares/live';
+import type { PrivateRoutes } from '~/Modules/Routes/private/live';
+import type { PublicRoutes } from '~/Modules/Routes/public/live';
+import liveModules from '~/Modules/live.modules';
 
 export class KoaHttpApp implements HttpApp {
   private readonly koa: Koa;
 
   constructor(
-    private readonly config: Config = configLive,
-    private readonly logger: Logger = new ConsoleLogger(configLive),
-    private readonly publicRoutes: PublicRoutes = new PublicRoutes(),
-    private readonly privateRoutes: PrivateRoutes = new PrivateRoutes(),
-    private readonly middlewares: Middlewares = new Middlewares()
+    private readonly config: Config = liveModules.config,
+    private readonly logger: Logger = liveModules.logger,
+    private readonly publicRoutes: PublicRoutes = liveModules.publicRoutes,
+    private readonly privateRoutes: PrivateRoutes = liveModules.privateRoutes,
+    private readonly middlewares: Middlewares = liveModules.middlewares,
   ) {
     this.koa = new Koa();
     this.middlewares.attachInfra(this.koa);
