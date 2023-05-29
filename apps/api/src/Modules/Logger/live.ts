@@ -1,7 +1,5 @@
 import winston from 'winston';
-import { Config } from '~/Modules/Config';
-import { Logger } from '~/Modules/Logger/Logger';
-import configLive from '~/Modules/Config/live';
+import type { Config, Logger } from '~/types';
 
 const formatToPrettyJson = winston.format.printf((info) => {
   if (
@@ -49,7 +47,7 @@ const winstonLoggerFactory = (config: Config) => {
 export class ConsoleLogger implements Logger {
   private logger: winston.Logger;
 
-  constructor(config: Config = configLive) {
+  constructor(config: Config) {
     this.logger = winstonLoggerFactory(config);
   }
 

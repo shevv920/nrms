@@ -1,45 +1,49 @@
 import Koa, { Context, Next } from 'koa';
 import * as E from 'fp-ts/Either';
-
-import { Auth } from '~/Modules/Auth/live';
-import { PrismaDatabase } from '~/Modules/Database/Prisma';
-
-const verifyJwtToken: Koa.Middleware = async (ctx: Context, next: Next) => {
-  const { accessToken } = ctx.state;
-  if (!accessToken) {
-    ctx.throw(401, 'Unauthorized');
-  }
-  const auth = new Auth();
-  const result = auth.verifyToken(accessToken);
-  if (E.isLeft(result)) {
-    ctx.throw(401, 'Unauthorized');
-  }
-  ctx.state.jwtPayload = result.right;
-  await next();
-};
-
-const attachAccount: Koa.Middleware = async (ctx: Context, next: Next) => {
-  const { accountId } = ctx.state.jwtPayload;
-  const db = new PrismaDatabase();
-  ctx.state.account = await db.prisma.accounts.findFirst({ where: { id: accountId } });
-  await next();
-};
-
-const defaultMiddlewares: Array<Koa.Middleware> = [
-  verifyJwtToken,
-  attachAccount,
-];
+import type { AuthHelper, PrismaDatabase } from '~/types';
 
 export class AuthMiddlewares {
+  private attachToken = async (ctx: Context, next: Next) => {
+    const { authorization } = ctx.headers;
+    const accessToken = authorization?.replace('Bearer', '').trim();
+
+    if (accessToken) {
+      ctx.state.accessToken = accessToken;
+    }
+
+    await next();
+  };
+
+  private verifyJwtToken: Koa.Middleware = async (ctx: Context, next: Next) => {
+    const { accessToken } = ctx.state;
+    if (!accessToken) {
+      ctx.throw(401, 'Unauthorized');
+    }
+    const result = this.auth.verifyToken(accessToken);
+    if (E.isLeft(result)) {
+      ctx.throw(401, 'Unauthorized');
+    }
+    ctx.state.jwtPayload = result.right;
+    await next();
+  };
+
+  private attachAccount: Koa.Middleware = async (ctx: Context, next: Next) => {
+    const { accountId } = ctx.state.jwtPayload;
+
+    ctx.state.account = await this.db.prisma.accounts.findFirst({ where: { id: accountId } });
+    await next();
+  };
+
   constructor(
-    private readonly middlewares: Koa.Middleware[] = defaultMiddlewares
+    private readonly auth: AuthHelper<any>,
+    private readonly db: PrismaDatabase
   ) {
-    this.middlewares = middlewares;
+
   }
 
   attach(app: Koa) {
-    this.middlewares.forEach((middleware) => {
-      app.use(middleware);
-    });
+    app.use(this.attachToken);
+    app.use(this.verifyJwtToken);
+    app.use(this.attachAccount);
   }
 }

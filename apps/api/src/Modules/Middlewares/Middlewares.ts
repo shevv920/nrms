@@ -1,7 +1,5 @@
 import Koa from 'koa';
 
-
-export interface IMiddlewares {
-  attachInfra: (app: Koa) => void;
+export interface Middlewares {
+  attach: (app: Koa) => void;
 }
-

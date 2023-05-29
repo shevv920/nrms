@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { Either } from 'fp-ts/Either';
 import * as E from 'fp-ts/Either';
 import { AuthHelper } from '~/Modules/Auth/Auth';
-import { Payload } from '~/Modules/Auth/Auth';
+import type { Payload } from '~/Modules/Auth/Auth';
 
 export class Auth implements AuthHelper<Payload> {
   private readonly secretKey: string;

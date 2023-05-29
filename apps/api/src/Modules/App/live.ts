@@ -1,19 +1,30 @@
 import Koa from 'koa';
-import { Config, HttpApp, Logger, PublicRoutes, PrivateRoutes, Middlewares } from '~/types';
-import liveModules from '~/Modules/live.modules';
+import type {
+  Config,
+  HttpApp,
+  Logger,
+  Middlewares,
+} from '~/types';
+import type Router from '@koa/router';
 
 export class KoaHttpApp implements HttpApp {
   private readonly koa: Koa;
 
   constructor(
-    private readonly config: Config = liveModules.config,
-    private readonly logger: Logger = liveModules.logger,
-    private readonly publicRoutes: PublicRoutes = liveModules.publicRoutes,
-    private readonly privateRoutes: PrivateRoutes = liveModules.privateRoutes,
-    private readonly middlewares: Middlewares = liveModules.middlewares,
+    private readonly config: Config,
+    private readonly logger: Logger,
+    private readonly infraMiddlewares: Middlewares,
+    private readonly routers: Router[],
   ) {
     this.koa = new Koa();
-    this.middlewares.attachInfra(this.koa);
+    this.infraMiddlewares.attach(this.koa);
+    this.routers.forEach((router) => {
+      this.koa.use(router.routes());
+    });
+  }
+
+  public use(middleware: Koa.Middleware) {
+    this.koa.use(middleware);
   }
 
   public async start() {
